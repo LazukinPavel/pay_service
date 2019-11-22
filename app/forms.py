@@ -3,8 +3,6 @@ from wtforms import DecimalField, TextAreaField, SubmitField, SelectField
 from wtforms.validators import DataRequired, NumberRange
 
 
-# TODO inputs validation
-
 class PayForm(FlaskForm):
     amount = DecimalField(
         'Payment amount',

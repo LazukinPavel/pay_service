@@ -22,5 +22,4 @@ def pay_form():
 
 @app.route('/submit')
 def submit():
-    # TODO handle form processing
     return 'Accepted'
