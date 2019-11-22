@@ -17,10 +17,12 @@ class PayForm(FlaskForm):
 
 
 class PayFormProtocolPAY(FlaskForm):
+    amount = HiddenField(description='amount')
     currency = HiddenField(description='currency')
     shop_id = HiddenField(description='shop_id')
     sign = HiddenField(description='sign')
     shop_order_id = HiddenField(description='shop_order_id')
+    description = HiddenField(description='description')
     submit = SubmitField('Submit')
 
 

@@ -18,7 +18,7 @@ class PaymentProcessor:
 
     def processing(self):
         if self.currency == 978:
-            self._process_eur()
+            return self._process_eur()
         if self.currency == 840:
             self._process_usd()
         if self.currency == 643:
@@ -38,8 +38,9 @@ class PaymentProcessor:
             'shop_id': self.shop_id,
             'shop_order_id': random.randrange(10000)
         }
-
-
+        sign = self.get_sign(params, keys_required)
+        params['sign'] = sign
+        return params
 
 
     def get_sign(self, params, keys_required):
