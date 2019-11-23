@@ -7,3 +7,9 @@ Development:
     flask run 
     
    
+   
+### TODOs
+
+    logging
+    deploy
+    docs
