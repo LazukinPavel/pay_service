@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+    <div class="container">
+        <h1>Invoice</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <form method="{{ method }}" action="{{ action_url }}" accept-charset="UTF-8">
+                    <div class="form-group">
+                        {% for k, v in fields.items() %}
+                            <label></label>
+                            <input name="{{ k }}" value="{{ v }}" class="form-control" type="text" readonly/>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
