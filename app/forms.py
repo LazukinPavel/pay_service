@@ -7,11 +7,11 @@ class PayForm(FlaskForm):
     amount = DecimalField(
         'Payment amount',
         places=2,
-        validators=[NumberRange(min=0.00), DataRequired(message='Invalid input')],
+        validators=[NumberRange(min=0.01), DataRequired(message='Invalid input')],
     )
-    currency = SelectField('Currency', choices=[('eur', 'EUR'), ('usd', 'USD'), ('rur', 'RUR')])
+    currency = SelectField('Currency', choices=[('978', 'EUR'), ('usd', 'USD'), ('rur', 'RUR')])
     description = TextAreaField('Product Description')
-    submit = SubmitField('Submit')
+    submit = SubmitField('OK')
 
 
 class PayFormProtocolPAY(FlaskForm):
@@ -23,18 +23,3 @@ class PayFormProtocolPAY(FlaskForm):
     description = HiddenField(description='description')
     submit = SubmitField('Submit')
 
-
-
-
-# <form name="Pay" method="post" action=" https://pay.piastrix.com/ru/pay"
-# accept-charset="UTF-8>
-# <input type="hidden" name="amount" value="10.00"/>
-# <input type="hidden" name="currency" value="643"/>
-# <input type="hidden" name="shop_id" value="5"/>
-# <input type="hidden" name="sign"
-# value="e4580435a252d61ef91b71cb23ed7bee4d77de94ced36411526d2ce3b6
-# 6ada8f"/>
-# <input type="hidden" name="shop_order_id" value="101"/>
-# <input type="submit" input type="hidden" name="description" value="Test
-# invoice"/>
-# </form>

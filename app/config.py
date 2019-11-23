@@ -1,6 +1,4 @@
-import os
-
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'I42oLBH8UYadhZKA5pFb'
+    SECRET_KEY = 'SecretKey01'
     SHOP_ID = 5

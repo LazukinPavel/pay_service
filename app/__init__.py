@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from .config import Config
 
 app = Flask(__name__)
+app.debug = True
 app.config.from_object(Config)
 bootstrap = Bootstrap(app)
 

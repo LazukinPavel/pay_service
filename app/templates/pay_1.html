@@ -1,0 +1,22 @@
+{% extends "bootstrap/base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+    <div class="container">
+        <h1>Pay Service</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <form name="Pay" method="post" action="{{ action_url }}" accept-charset="UTF-8">
+                    <input type="hidden" name="amount" value="{{ amount }}"/>
+                    <input type="hidden" name="currency" value="{{ currency }}"/>
+                    <input type="hidden" name="shop_id" value="{{ shop_id }}"/>
+                    <input type="hidden" name="sign" value="{{ sign }}"/>
+                    <input type="hidden" name="shop_order_id" value="{{ shop_order_id }}"/>
+                    <input type="hidden" name="description" value="{{ description }}"/>
+                    <input type="submit" value="Submit via 'Pay Method'" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

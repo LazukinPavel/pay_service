@@ -16,9 +16,9 @@ def pay_form():
         description = form.description.data
         p = PaymentProcessor(amount, currency, description)
         processed_data = p.processing()
-        form = PayFormProtocolPAY(**processed_data)
+        # form = PayFormProtocolPAY(**processed_data)
         piastrix_url = 'https://pay.piastrix.com/ru/pay'
-        return render_template('pay_form.html', title='Submit Form', action_url=piastrix_url, form=form)
+        return render_template('pay_1.html', title='Submit Form', action_url=piastrix_url, **processed_data)
     return render_template('pay_form.html', title='Pay Form', form=form)
 
 

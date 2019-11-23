@@ -1,6 +1,8 @@
 import hashlib
 import random
 
+from flask import current_app
+
 
 currency_codes = {
     'eur': 978,
@@ -10,19 +12,18 @@ currency_codes = {
 
 
 class PaymentProcessor:
-    def __init__(self, amount, currency, description, shop_id):
-        self.amount = amount
-        self.currency = currency_codes[currency]
+    def __init__(self, amount, currency, description):
+        self.amount = "{0:.2f}".format(amount)
+        self.currency = currency
         self.description = description
-        self.shop_id = shop_id
 
     def processing(self):
-        if self.currency == 978:
+        if self.currency == '978':
             return self._process_eur()
-        if self.currency == 840:
-            self._process_usd()
-        if self.currency == 643:
-            self._process_rur()
+        # if self.currency == 840:
+        #     self._process_usd()
+        # if self.currency == 643:
+        #     self._process_rur()
 
     def _process_rur(self):
         pass
@@ -35,28 +36,19 @@ class PaymentProcessor:
         params = {
             'amount': self.amount,
             'currency': self.currency,
-            'shop_id': self.shop_id,
+            'shop_id': current_app.config['SHOP_ID'],
             'shop_order_id': random.randrange(10000)
         }
         sign = self.get_sign(params, keys_required)
         params['sign'] = sign
         return params
 
-
     def get_sign(self, params, keys_required):
-        # params = {
-        #     "currency": "643",
-        #     "payway": "payeer_rub",
-        #     "amount": "12.34",
-        #     "shop_id": "5",
-        #     "shop_order_id": 4126,
-        #     "description": "Test invoice",
-        # }
-        # keys_required = ("shop_id", "payway", "amount", "currency", "shop_order_id")
-
         keys_sorted = sorted(keys_required)
         values = [str(params[k]) for k in keys_sorted]
         pre_hash = ':'.join(values)
-        sign = hashlib.sha256(pre_hash.encode('utf-8')).hexdigest()
+        pre_hash += current_app.config['SECRET_KEY']
+        # print(pre_hash)
+        sign = hashlib.sha256(pre_hash.encode()).hexdigest()
         return sign
 
