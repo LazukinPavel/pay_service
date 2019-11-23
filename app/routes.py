@@ -8,6 +8,7 @@ from app.forms import PayForm
 @app.route('/', methods=['GET', 'POST'])
 def root():
     form = PayForm()
+    app.logger.info('Initial pay form received')
 
     if form.validate_on_submit():
         amount = form.amount.data
