@@ -6,10 +6,9 @@ from flask import current_app
 
 
 class Piastrix:
-    def __init__(self, amount, currency, description):
+    def __init__(self, amount, currency):
         self.amount = "{0:.2f}".format(amount)
         self.currency = currency
-        self.description = description
 
     def request_piastrix(self, url, fields):
         try:

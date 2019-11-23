@@ -13,8 +13,7 @@ def pay_form():
         amount = form.amount.data
         form.amount.data = amount
         currency = form.currency.data
-        description = form.description.data
-        piastrix = Piastrix(amount, currency, description)
+        piastrix = Piastrix(amount, currency)
         fields = piastrix.prepare_form_fields()
 
         # Direct
