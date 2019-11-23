@@ -6,7 +6,7 @@ from app.forms import PayForm
 
 
 @app.route('/', methods=['GET', 'POST'])
-def pay_form():
+def root():
     form = PayForm()
 
     if form.validate_on_submit():
@@ -27,7 +27,8 @@ def pay_form():
             resp = piastrix.request_piastrix(create_bill_url, fields)
             if not resp['result']:
                 # TODO log error_code & message
-                return resp['message']
+                # resp['message']
+                return render_template('error.html')
             else:
                 pay_url = resp['data']['url']
                 return redirect(pay_url)
@@ -38,7 +39,8 @@ def pay_form():
             resp = piastrix.request_piastrix(create_invoice_url, fields)
             if not resp['result']:
                 # TODO log error_code & message
-                return resp['message']
+                # message = resp['message']
+                return render_template('error.html')
             else:
                 method = resp['data']['method']
                 pay_url = resp['data']['url']
@@ -52,9 +54,4 @@ def pay_form():
                 )
 
     return render_template('form_initial.html', form=form)
-
-
-
-
-
 
