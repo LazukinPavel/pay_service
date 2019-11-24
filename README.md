@@ -6,8 +6,8 @@ Development:
     pip install -r requirements.txt
     flask run 
     
-Deployed on Heroku: 
+Deployed on Heroku
 
-    https://lazukin-pay-service.herokuapp.com
+<https://lazukin-pay-service.herokuapp.com>
 
 
