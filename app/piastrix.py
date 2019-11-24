@@ -7,16 +7,16 @@ from flask import current_app
 
 class Piastrix:
     def __init__(self, amount, currency):
-        self.amount = "{0:.2f}".format(amount)
+        self.amount = amount
         self.currency = currency
 
     def request_piastrix(self, url, fields):
         try:
             resp = requests.post(url, json=fields).json()
             print('=== resp', resp)
-        except ConnectionError as e:
-            return 'Sorry, we have connection problem'
-            # TODO log exception
+        except requests.exceptions.ConnectionError as e:
+            current_app.logger.error(e)
+            return None
         return resp
 
     def prepare_form_fields(self):

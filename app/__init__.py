@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 from flask_bootstrap import Bootstrap
-import logging
+import logging.handlers
 
 from .config import Config
 
@@ -14,7 +14,12 @@ bootstrap = Bootstrap(app)
 
 if not os.path.exists('logs'):
     os.mkdir('logs')
-logging.basicConfig(filename='logs/pay.log', level=logging.INFO)
+
+handler = logging.handlers.RotatingFileHandler(
+        'logs/pay.log',
+        maxBytes=1024 * 1024)
+handler.setLevel(logging.INFO)
+app.logger.addHandler(handler)
 
 
 from app import routes
