@@ -10,6 +10,5 @@ Development:
    
 ### TODOs
 
-    logging
     deploy
     docs

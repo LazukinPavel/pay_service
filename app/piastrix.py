@@ -13,7 +13,6 @@ class Piastrix:
     def request_piastrix(self, url, fields):
         try:
             resp = requests.post(url, json=fields).json()
-            print('=== resp', resp)
         except requests.exceptions.ConnectionError as e:
             current_app.logger.error(e)
             return None

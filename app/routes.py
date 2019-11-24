@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 from .piastrix import Piastrix
 
 from app import app
@@ -11,7 +11,7 @@ from app.forms import PayForm
 def root():
     form = PayForm()
 
-    if form.validate_on_submit():
+    if request.method == 'POST' and form.validate_on_submit():
         amount = form.amount.data
         amount = "{0:.2f}".format(amount)
         currency = form.currency.data
