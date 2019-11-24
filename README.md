@@ -6,9 +6,8 @@ Development:
     pip install -r requirements.txt
     flask run 
     
-   
-   
-### TODOs
+Deployed on Heroku: 
 
-    deploy
-    docs
+    https://lazukin-pay-service.herokuapp.com
+
+
